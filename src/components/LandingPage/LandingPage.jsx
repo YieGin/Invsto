@@ -17,6 +17,7 @@ const LandingPage = () => {
   const [value, setValue] = useState(16);
   const [Year, setYear] = useState(144);
   const [ValueDown, setValueDown] = useState(false);
+  const [ValueYear, setValueYear] = useState(false);
   const [Open, setOpen] = useState(true);
   const [Close, setClose] = useState(false);
   const [ValueOpen, setValueOpen] = useState(true);
@@ -82,23 +83,18 @@ const LandingPage = () => {
                   />
                 </div>
               )}
-              {ValueDown && (
-                <div className="Landing_Page_4_phone">
-                  <input
-                    max={144}
-                    className="range-sliderr"
-                    type="range"
-                    defaultValue={value}
-                    onChange={handleChange}
-                  />
-                </div>
-              )}
               <div className="Price_div">
                 <h1 className="Price">
                   {ValueOpen && (
                     <div>
                       ${value}.00
                       <span className="month"> / month</span>
+                    </div>
+                  )}
+                  {ValueYear && (
+                    <div>
+                      ${Year}.00
+                      <span className="month"> / Year</span>
                     </div>
                   )}
                   {ValueDown && (
@@ -122,24 +118,14 @@ const LandingPage = () => {
                 />
               </div>
             )}
-            {ValueDown && (
-              <div className="Landing_Page_4">
-                <input
-                  max={144}
-                  className="range-sliderr"
-                  type="range"
-                  defaultValue={value}
-                  onChange={handleChange}
-                />
-              </div>
-            )}
             <div className="Landing_Page_5">
               <p>Monthlty Billing</p>
               {Open && (
                 <>
                   <label
                     onClick={() => {
-                      setValueDown(true);
+                      setValueYear(true);
+                      setValueDown(false);
                       setValueOpen(false);
                       setOpen(false);
                       setClose(true);
@@ -159,6 +145,7 @@ const LandingPage = () => {
                 <>
                   <label
                     onClick={() => {
+                      setValueYear(false);
                       setValueDown(false);
                       setValueOpen(true);
                       setOpen(true);
